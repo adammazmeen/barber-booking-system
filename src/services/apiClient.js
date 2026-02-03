@@ -1,8 +1,9 @@
 import axios from "axios";
 
+const baseURL = import.meta.env.VITE_API_URL;
+
 const api = axios.create({
-  baseURL:
-    "https://e6aac041-8e28-4929-8ba9-0f2a5d62989c-00-25ghwiog9745b.pike.replit.dev",
+  baseURL,
 });
 
 export const getBookings = () => api.get("/bookings").then((r) => r.data);

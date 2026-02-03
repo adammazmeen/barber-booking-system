@@ -1,16 +1,49 @@
-# React + Vite
+# Barber Booking System (Frontend)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite single-page application used to manage bookings, prices, and availability for the barber booking system backend.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js 18+ (recommended LTS)
+- npm 9+
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Install dependencies:
 
-## Expanding the ESLint configuration
+   ```bash
+   npm install
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Copy the sample environment file and point it at your API:
+
+   ```bash
+   cp .env.example .env.local
+   # then edit VITE_API_URL
+   ```
+
+   The frontend reads `VITE_API_URL` in [src/services/apiClient.js](src/services/apiClient.js#L3-L11). If the variable is missing, it falls back to the bundled demo backend URL.
+
+3. Start the dev server:
+
+   ```bash
+   npm run dev
+   ```
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+Build artifacts are emitted to `dist/`. Use `npm run preview` to sanity check the production bundle locally.
+
+## Deploying to Vercel
+
+1. Create a new Vercel project from this repo and choose the **Vite** preset.
+2. Configure the build settings:
+   - Install Command: `npm install`
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+3. Add the `VITE_API_URL` env variable under **Project Settings → Environment Variables** so each environment points to the correct backend (production, preview, etc.).
+4. Deploy. Client-side routing is already handled via the rewrite rule in `vercel.json`.

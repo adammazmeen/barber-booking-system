@@ -6,7 +6,7 @@ export default function AppNavbar() {
     <Navbar bg="dark" variant="dark">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          Barber Booking System
+          BookCut
         </Navbar.Brand>
 
         <Nav>
